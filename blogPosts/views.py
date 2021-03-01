@@ -26,4 +26,4 @@ def delete(request, id):
     post = Post.objects.get(id=id)
     post.delete()
     return redirect('blogPosts:index')
-    
+

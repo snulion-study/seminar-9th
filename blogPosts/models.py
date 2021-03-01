@@ -14,4 +14,3 @@ class Post(models.Model):
 
     def __str__(self):
         return f'[title: {self.title}] {self.content}'
-        
