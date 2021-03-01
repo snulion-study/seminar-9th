@@ -4,7 +4,7 @@
   <h1>POSTS</h1>
     <a href="{% url 'blogPosts:new' %}">new post</a>
     {% for post in posts %} 
-      <div style="border: 1px solid grey;">
+      <div class="index-post-title">
 				<a href="{% url 'blogPosts:show' post.id %}">
           <h3>{{ post.title }}</h3>
         </a>
