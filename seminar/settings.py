@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'blogPosts.apps.BlogpostsConfig',
     'sass_processor',
+    'accounts.apps.AccountsConfig',
 ]
 
 MIDDLEWARE = [
@@ -124,3 +125,4 @@ STATIC_URL = '/static/'
 
 SASS_PROCESSOR_ENABLED =  True
 SASS_PROCESSOR_ROOT =  os.path.join(BASE_DIR, 'blogPosts', 'static')
+LOGIN_REDIRECT_URL = "/posts/"

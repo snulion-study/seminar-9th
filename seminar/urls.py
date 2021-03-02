@@ -19,9 +19,12 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.conf.urls import include
 import blogPosts.views
+import accounts.views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', blogPosts.views.index, name='index'),
     path('posts/', include('blogPosts.urls')),
+    path('accounts/', include('django.contrib.auth.urls')),
+    path('accounts/signup/', accounts.views.signup, name='signup'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
