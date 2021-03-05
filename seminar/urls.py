@@ -24,4 +24,4 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', blogPosts.views.index, name='index'),
     path('posts/', include('blogPosts.urls')),
-] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+] 
