@@ -3,8 +3,35 @@
 {% block content %}
   <div>
     <a href="{% url 'blogPosts:index' %}">home</a>
+    <div>
+      태그:
+      {% for tag in tags %}
+        <a href="{% url 'tags:read' id=tag.id %}">{{ tag.content }}</a>
+      {% endfor %}
+    </div>
     <h1>{{ post.title }}</h1>
+    <p>작성자: {{ post.author }}</p>
+    <p>작성일: {{ post.created_at }}</p>
     <pre>{{ post.content }}</pre>
-    <a href="{% url 'blogPosts:delete' id=post.id %}">삭제</a>
+    {% if request.user == post.author %}
+      <a href="{% url 'blogPosts:delete' id=post.id %}" onclick="return confirm('정말 삭제하시겠습니까?')">삭제</a>
+    {% endif %}
+    <p><strong>댓글이 n개 있습니다 </strong><p>
+    {% if user.is_authenticated %}
+      <form action="{% url 'blogPosts:comment_create' id=post.id %}" method="POST">
+        {% csrf_token %}
+        <input type="text" name="content" />
+        <button type="submit">댓글 달기</button>
+      </form>
+    {% endif %}
+    {% for c in post.comment_set.all %}
+      <p>
+        <strong>{{c.author}}</strong>: {{ c.content }} &nbsp; &nbsp;
+        {{c.created_at}}
+        {% if request.user == c.author %}
+          <a href="{% url 'blogPosts:comment_delete' id=post.id cid=c.id %}" onclick="return confirm('정말 삭제하시겠습니까?')">댓글 삭제</a>
+        {% endif %}
+      </p>
+    {% endfor %}
   </div>
 {% endblock content %}
