@@ -5,6 +5,7 @@
     <a href="{% url 'blogPosts:index' %}">home</a>
     <h1>{{ post.title }}</h1>
     <pre>{{ post.content }}</pre>
+    <a href="{% url 'blogPosts:update' id=post.id %}">수정</a>
     <a href="{% url 'blogPosts:delete' id=post.id %}">삭제</a>
   </div>
 {% endblock content %}
