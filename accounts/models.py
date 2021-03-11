@@ -11,7 +11,7 @@ class Profile(models.Model):
     major = models.CharField(max_length=20, blank=True)
 
     def __str__(self):
-        return 'id=%d, user_id=%d, college=%s, major=%s' % (self.id, self.user.id, self.college, self.major)
+        return f'id={self.id}, user_id={self.user.id}, college={self.college}, major={self.major}' 
 
     @receiver(post_save, sender = User)
     def create_use_profile(sender, instance, created, **kwargs):
