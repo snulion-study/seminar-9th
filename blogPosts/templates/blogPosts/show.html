@@ -24,12 +24,12 @@
         <button type="submit">댓글 달기</button>
       </form>
     {% endif %}
-    {% for c in post.comment_set.all %}
+    {% for comment in post.comment_set.all %}
       <p>
-        <strong>{{c.author}}</strong>: {{ c.content }} &nbsp; &nbsp;
-        {{c.created_at}}
-        {% if request.user == c.author %}
-          <a href="{% url 'blogPosts:comment_delete' id=post.id cid=c.id %}" onclick="return confirm('정말 삭제하시겠습니까?')">댓글 삭제</a>
+        <strong>{{ comment.author }}</strong>: {{ comment.content }} &nbsp; &nbsp;
+        {{ comment.created_at }}
+        {% if request.user == comment.author %}
+          <a href="{% url 'blogPosts:comment_delete' id=post.id cid=comment.id %}" onclick="return confirm('정말 삭제하시겠습니까?')">댓글 삭제</a>
         {% endif %}
       </p>
     {% endfor %}

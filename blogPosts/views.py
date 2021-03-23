@@ -41,8 +41,8 @@ class CommentView:
         return redirect(f'/posts/{id}')
         
     def delete(request, id, cid):
-        c = Comment.objects.get(id=cid)
-        c.delete()
+        comment = Comment.objects.get(id=cid)
+        comment.delete()
         return redirect(f'/posts/{id}')
     
     
