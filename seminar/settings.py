@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'blogPosts.apps.BlogpostsConfig',
     'accounts.apps.AccountsConfig',
+    'tags.apps.TagsConfig',
     'sass_processor',
 ]
 

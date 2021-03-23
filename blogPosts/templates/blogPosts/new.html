@@ -4,6 +4,11 @@
   <h1>new post</h1>
     <form action="{% url 'blogPosts:index' %}" method="POST">
       {% csrf_token %}
+      <p>태그 선택</p>
+      {% for tag in tags %}
+        {{ tag.content }}
+        <input name="tags" type="checkbox" value={{tag.id}} />
+      {% endfor %}
       <p>title</p>
       <input name="title" /> <br />
       <p>content</p>
