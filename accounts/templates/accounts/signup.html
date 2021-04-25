@@ -1,6 +1,18 @@
-<h1> Sign Up! </h1>
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
 
-<form method="POST" action="{%url 'signup'%}">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>snulion || 회원가입</title>
+</head>
+
+<body>
+  <h1 class="signup-title"> Sign Up! </h1>
+
+  <form id="signup-form" method="POST" action="{%url 'signup'%}">
     {% csrf_token %}
     사용자 이름:
     <br>
@@ -9,13 +21,26 @@
     <br>
     비밀번호:
     <br>
-    <input name="password1" type="password" value="">
+    <input class="password-input" name="password1" type="password" value="" placeholder="3자 이상의 알파벳 대소문자 또는 숫자를 입력해주세요">
     <br>
     <br>
     비밀번호 확인:
     <br>
-    <input name="password2" type="password" value="">
+    <input class="password-input" name="password2" type="password" value="" placeholder="3자 이상의 알파벳 대소문자 또는 숫자를 입력해주세요">
     <br>
     <br>
     <input type="submit" value="Sign Up!">
-</form>
+  </form>
+  <div id="signup-alert-modal">
+    <div class="modal-header">
+      <div class="modal-title">입력 오류</div>
+      <button class="close-button">✖</button>
+    </div>
+    <div class="modal-content">
+      비밀번호를 확인해주세요
+    </div>
+  </div>
+  <script src="{% static 'accounts/js/signup.js' %}"></script>
+</body>
+
+</html>
