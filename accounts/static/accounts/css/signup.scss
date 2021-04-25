@@ -1,20 +1,11 @@
-html {
-	box-sizing: border-box;
-	width: 100%;
-	height: 100%;
+html,
+body {
 	margin: 0;
 	padding: 0;
 }
 
-body {
-	width: 100%;
-	height: 100%;
-	margin: 0;
-	padding: 0;
-
-	&.grey {
-		background-color: rgb(200, 200, 200);
-	}
+body.grey {
+	background-color: rgb(200, 200, 200);
 }
 
 input {
