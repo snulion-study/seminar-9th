@@ -10,6 +10,7 @@ signupForm.onsubmit = (e) => handleSignup(e);
 modalCloseButton.addEventListener('click', () => handleShowingAlertModal(false));
 modalCloseButton.addEventListener('click', () => handleGreyBackgroundColor(false));
 modalCloseButton.addEventListener('click', () => handleDisabledInput(false));
+modalCloseButton.addEventListener('click', () => document.querySelector('input[name=password1]').focus());
 
 // 회원가입 form이 제출되는 이벤트에 바인딩되는 함수
 const handleSignup = ( e ) => {
@@ -66,7 +67,3 @@ const handleDisabledInput = (disabled) => {
   const inputArr = [...document.querySelectorAll('input')];
   inputArr.forEach(input => input.disabled = disabled);
 } 
-
-
-
-
