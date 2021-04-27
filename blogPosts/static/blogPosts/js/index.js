@@ -6,7 +6,6 @@
   searchBtn.onclick = () => feature.search();
   searchBar.onkeypress = (e) => feature.handleEnterPress(e);
   resetBtn.onclick = () => feature.reset();
-
 })();
 
 const feature = {
@@ -58,4 +57,3 @@ const feature = {
     posts.forEach(({ post }) => post.classList.toggle('hide', isHidden));
   }
 }
-
