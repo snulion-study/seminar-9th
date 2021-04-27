@@ -1,5 +1,25 @@
-.tag-container {
-	padding: 20px;
+.tag-search-container {
+	display: flex;
+
+	.tag-container {
+		width: 50%;
+		padding: 20px;
+	}
+
+	.search-container {
+		display: flex;
+		align-items: center;
+		width: 50%;
+		padding: 20px;
+
+		#search-bar {
+			margin-right: 20px;
+		}
+
+		#search-btn {
+			margin-right: 20px;
+		}
+	}
 }
 
 .post-container {
@@ -7,5 +27,9 @@
 
 	.index-post-title {
 		border: 1px solid grey;
+
+		&.hide {
+			display: none;
+		}
 	}
 }
