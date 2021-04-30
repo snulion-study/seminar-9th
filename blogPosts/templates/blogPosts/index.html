@@ -37,5 +37,7 @@
   </div>
   {% endfor %}
 </div>
-<script src="{% static 'blogPosts/js/index.js' %}"></script>
 {% endblock content %}
+{% block js %}
+<script src="{% static 'blogPosts/js/index.js' %}"></script>
+{% endblock js %}
