@@ -127,3 +127,5 @@ STATIC_URL = '/static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 SASS_PROCESSOR_ENABLED =  True
 SASS_PROCESSOR_ROOT =  os.path.join(BASE_DIR, 'blogPosts', 'static')
+
+STATICFILES_DIRS = [ BASE_DIR / 'static' ]
