@@ -18,7 +18,7 @@
       <div>
         내가 좋아한 글 : {{ user.like_posts.count }}개
       </div>
-      <a href="{% url 'logout'%}?next={{request.path}}">로그아웃</a>
+      <a id="log-out" href="{% url 'logout'%}?next={{request.path}}">로그아웃</a>
       {% else %}
       <a href="{% url 'signup' %}">회원가입</a>
       <a href="{% url 'login'%}?next={{request.path}}">로그인</a>
@@ -26,6 +26,21 @@
     </div>
     Snulion Blog
   </header>
+  <div id="log-out-modal">
+    <div class="modal-header">
+      오늘은 총&nbsp;<span class="viewed-post-count"></span>개의 글을 읽으셨네요!
+    </div>
+    <ul class="modal-content">
+    </ul>
+    <div class="modal-footer">
+      <button class="confirm">
+        로그아웃
+      </button>
+      <button class="cancel">
+        취소
+      </button>
+    </div>
+  </div>
   {% block content %}
   {% endblock %}
   <footer>
@@ -34,7 +49,6 @@
       <span class="copyright">SNU LIKELION © 2020</span>
       </divd>
   </footer>
-  <script src="{% static 'blogPosts/js/base.js' %}"></script>
 </body>
 
 </html>
