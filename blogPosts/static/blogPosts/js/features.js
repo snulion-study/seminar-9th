@@ -21,7 +21,7 @@ const searchFeature = {
 
 	handleEnterPress(e) {
 		if (e.key === 'Enter') {
-			this.search(e.target.value);
+			this.handleSearch(e.target.value);
 		}
 	},
 
