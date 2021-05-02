@@ -1,5 +1,9 @@
 {% extends 'base.html' %}
 {% load static %}
+{% block js %}
+<script type="module" src="{% static 'blogPosts/js/show.js' %}"></script>
+{% endblock js %}
+
 {% block content %}
 <div>
   <a href="{% url 'blogPosts:index' %}">home</a>
@@ -37,6 +41,3 @@
   {% endfor %}
 </div>
 {% endblock content %}
-{% block js %}
-<script type="module" src="{% static 'blogPosts/js/show.js' %}"></script>
-{% endblock js %}

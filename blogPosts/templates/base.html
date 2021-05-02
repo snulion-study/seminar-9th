@@ -8,6 +8,9 @@
   {% load static %}
   {% load sass_tags %}
   <link rel="stylesheet" type="text/css" href="{% sass_src 'blogPosts/css/blogPosts.scss' %}">
+  <script type="module" src="{% static 'blogPosts/js/base.js' %}"></script>
+  {% block js %}
+  {% endblock %}
 </head>
 
 <body>
@@ -49,9 +52,7 @@
       <span class="copyright">SNU LIKELION © 2020</span>
       </divd>
   </footer>
-  <script type="module" src="{% static 'blogPosts/js/base.js' %}"></script>
-  {% block js %}
-  {% endblock %}
+  
 </body>
 
 </html>
