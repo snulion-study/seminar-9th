@@ -8,9 +8,10 @@ body {
 	height: 100%;
 	font-family: 'Roboto Mono', monospace;
 
-	&.hide {
-		overflow: hidden;
-	}
+	// UI-Framework 적용 이후 불필요
+	// &.hide {
+	// 	overflow: hidden;
+	// }
 }
 
 header {

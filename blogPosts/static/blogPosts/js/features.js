@@ -99,6 +99,7 @@ const logOutFeature = {
 	body: document.querySelector('body'),
 	logOutModal: document.getElementById('log-out-modal'),
 	modalContent: document.querySelector('#log-out-modal > .modal-content'),
+	mdlLayoutContent: document.querySelector('.mdl-layout__content'),
 
 	handleLogOutBtnClick(e) {
 		e.preventDefault();
@@ -143,13 +144,17 @@ const logOutFeature = {
 	},
 
 	lockScroll() {
-		this.html.classList.add('hide');
-		this.body.classList.add('hide');
+    // UI-Framework 적용 이후 불필요
+		// this.html.classList.add('hide');
+		// this.body.classList.add('hide');
+		this.mdlLayoutContent.style.setProperty('overflow', 'hidden');
 	},
 
 	unlockScroll() {
-		this.html.classList.remove('hide');
-		this.body.classList.remove('hide');
+    // UI-Framework 적용 이후 불필요
+		// this.html.classList.remove('hide');
+		// this.body.classList.remove('hide');
+		this.mdlLayoutContent.style.setProperty('overflow', 'auto');
 	},
 
 	setViewedPostCount(viewedPosts) {
