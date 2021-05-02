@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>snulion || 회원가입</title>
     <link rel="stylesheet" type="text/css" href="{% sass_src 'accounts/css/signup.scss' %}">
-    <script defer src="{% static 'accounts/js/signup.js' %}"></script>
+    <script type="module" src="{% static 'accounts/js/signup.js' %}"></script>
 </head>
 
 <body>
@@ -24,12 +24,12 @@
     <br>
     비밀번호:
     <br>
-    <input class="password-input" name="password1" type="password" value="" placeholder="3자 이상의 알파벳 대소문자 또는 숫자를 입력해주세요">
+    <input class="password-input" name="password1" type="password" value="" placeholder="3자 이상의 알파벳 대소문자 또는 숫자를 입력해주세요" autocomplete="off">
     <br>
     <br>
     비밀번호 확인:
     <br>
-    <input class="password-input" name="password2" type="password" value="" placeholder="3자 이상의 알파벳 대소문자 또는 숫자를 입력해주세요">
+    <input class="password-input" name="password2" type="password" value="" placeholder="3자 이상의 알파벳 대소문자 또는 숫자를 입력해주세요" autocomplete="off">
     <br>
     <br>
     <input type="submit" value="Sign Up!">
