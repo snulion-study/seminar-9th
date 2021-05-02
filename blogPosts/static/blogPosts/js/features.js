@@ -89,12 +89,19 @@ const postFeature = {
 	},
 
 	removeHistory() {
-		localStorage.remove('viewedPosts');
+		localStorage.removeItem('viewedPosts');
 	},
 };
 
 // Log-out과 관련된 features
 const logOutFeature = {
+	html: document.querySelector('html'),
+	body: document.querySelector('body'),
+	logOutModal: document.getElementById('log-out-modal'),
+	modalContent: document.querySelector(
+		'#log-out-modal > .modal-content'
+	),
+
 	handleLogOutBtnClick(e) {
 		e.preventDefault();
 		this.showLogOutModal();
@@ -119,33 +126,37 @@ const logOutFeature = {
 	},
 
 	showLogOutModal() {
-		document.getElementById('log-out-modal').classList.add('show');
+		this.logOutModal.classList.add('show');
 		this.lockScroll();
 
 		const viewedPosts = commonFeature.getViewedPosts();
-		this.setViewedPostCount(viewedPosts);
-		this.showViewedPostTitle(viewedPosts);
+		const hasLogOutModalOpened = this.modalContent.children.length === viewedPosts.length;
+
+		if (!hasLogOutModalOpened) {
+			this.setViewedPostCount(viewedPosts);
+			this.showViewedPostTitle(viewedPosts);
+		}
 	},
 
 	hideLogOutModal() {
-		document.getElementById('log-out-modal').classList.remove('show');
+		this.logOutModal.classList.remove('show');
 		this.unlockScroll();
 	},
 
 	lockScroll() {
-		document.querySelector('body').classList.add('hidden');
-		document.querySelector('html').classList.add('hidden');
+		this.html.classList.add('hidden');
+		this.body.classList.add('hidden');
 	},
 
 	unlockScroll() {
-		document.querySelector('body').classList.remove('hidden');
-		document.querySelector('html').classList.remove('hidden');
+		this.html.classList.remove('hidden');
+		this.body.classList.remove('hidden');
 	},
 
-	setViewedPostCount({ length }) {
+	setViewedPostCount(viewedPosts) {
 		document.querySelector(
 			'#log-out-modal > .modal-header > .viewed-post-count'
-		).textContent = length;
+		).textContent = viewedPosts.length;
 	},
 
 	showViewedPostTitle(viewedPosts) {
@@ -157,10 +168,7 @@ const logOutFeature = {
 			);
 		});
 
-		const modalContent = document.querySelector(
-			'#log-out-modal > .modal-content'
-		);
-		modalContent.appendChild(fragment);
+		this.modalContent.appendChild(fragment);
 	},
 
 	makeElement([tagName, attribute, value, textContent]) {
