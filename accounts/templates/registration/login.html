@@ -1,13 +1,28 @@
-<h1>로그인</h1>
-<form method="post" action="{% url 'login' %}">
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>snulion || 로그인</title>
+</head>
+
+<body>
+  <h1>로그인</h1>
+  <form method="post" action="{% url 'login' %}">
     {% csrf_token %}
     <p>
-	사용자 이름:
-        <input type="text" name="username" value="">
-  	</p>
-  	<p>
-        비밀번호:
-	<input type="password" name="password" value="">
-  	</p>
+      사용자 이름:
+      <input type="text" name="username" value="">
+    </p>
+    <p>
+      비밀번호:
+      <input type="password" name="password" value="">
+    </p>
     <input type="submit" value="로그인" />
-</form>
+  </form>
+</body>
+
+</html>

@@ -1,0 +1,81 @@
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+
+body.gray {
+	background-color: rgb(200, 200, 200);
+}
+
+input {
+	background-color: transparent;
+}
+
+.signup-title {
+	padding: 20px;
+	margin: 0;
+}
+
+#signup-form {
+	margin-left: 20px;
+
+	.password-input {
+		width: 400px;
+	}
+}
+
+#signup-alert-modal {
+	box-sizing: border-box;
+	opacity: 0;
+	width: 400px;
+	height: 150px;
+	padding: 16px 20px;
+	border-radius: 20px;
+	box-shadow: 0px 5px 10px rgb(231, 231, 231);
+	position: absolute;
+	top: 40%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background-color: #fff;
+
+	&:hover {
+		box-shadow: 0px 5px 15px rgb(231, 231, 231);
+	}
+
+	&.show {
+		opacity: 1;
+		transition: opacity 0.3s;
+	}
+
+	.modal-header {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		margin-bottom: 20px;
+
+		.modal-title {
+			font-size: 32px;
+			font-weight: bold;
+		}
+
+		.close-button {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			width: 32px;
+			height: 32px;
+			font-size: 20px;
+			border: none;
+			background-color: transparent;
+			cursor: pointer;
+			color: rgb(255, 168, 168);
+			padding: 4px;
+
+			&:hover {
+				background-color: rgb(255, 208, 208);
+				border-radius: 100%;
+			}
+		}
+	}
+}
