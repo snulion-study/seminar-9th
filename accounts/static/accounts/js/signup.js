@@ -1,16 +1,13 @@
+import { signupFeature } from './signupFeature.js';
+
 // id 어트리뷰트가 있는 요소 노드를 취득하는 경우에는 getElementById 메서드를 사용하고
 // 그 외의 경우에는 querySelector, querySelectorAll 메서드를 사용하는 것을 권장한다.
 const signupForm = document.getElementById('signup-form');
 const modalCloseButton = document.querySelector('.modal-header > .close-button');
 
 // 이벤트 핸들러 프로퍼티 방식은 하나의 이벤트에 하나의 이벤트 핸들만을 바인딩할 수 있다.
-signupForm.onsubmit = (e) => handleSignup(e);
-
-// addEventListener 메서드는 하나 이상의 이벤트 핸들러를 등록할 수 있다.
-modalCloseButton.addEventListener('click', () => handleShowingAlertModal(false));
-modalCloseButton.addEventListener('click', () => handleGreyBackgroundColor(false));
-modalCloseButton.addEventListener('click', () => handleDisabledInput(false));
-modalCloseButton.addEventListener('click', () => document.querySelector('input[name=password1]').focus());
+signupForm.onsubmit = (e) => signupFeature.handleSignup(e);
+modalCloseButton.onclick = () => signupFeature.handleModalCloseBtnClick();
 
 // 회원가입 form이 제출되는 이벤트에 바인딩되는 함수
 const handleSignup = ( e ) => {
@@ -59,7 +56,7 @@ const handleShowingAlertModal = (isModalShown) => {
 // 회색 배경색깔을 핸들링한다.
 const handleGreyBackgroundColor = (isShown) => {
   const body = document.querySelector('body');
-  body.classList.toggle('grey', isShown);
+  body.classList.toggle('grey', isShow);
 }
 
 // 인풋값 비활성화 여부를 핸들링한다.
