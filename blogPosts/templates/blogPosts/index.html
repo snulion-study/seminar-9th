@@ -1,31 +1,43 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block content %}
-  <div>
+<div class="tag-search-container">
+  <div class="tag-container">
     태그
     {% for tag in tags %}
-      <a href="{% url 'tags:read' id=tag.id %}">{{ tag.content }}</a>
+    <a href="{% url 'tags:read' id=tag.id %}">{{ tag.content }}</a>
     {% endfor %}
     {% if user.is_authenticated %}
-      <form action="{% url 'tags:create' %}" method="POST">        
-        {% csrf_token %}
-        <input type="text" name="content"/>
-        <button type="submit">태그 추가</button>
-      </form>
+    <form action="{% url 'tags:create' %}" method="POST">
+      {% csrf_token %}
+      <input type="text" name="content" />
+      <button type="submit">태그 추가</button>
+    </form>
     {% endif %}
   </div>
+  <div class="search-container">
+    <input id="search-bar" type="text" placeholder="타이틀을 입력해주세요">
+    <button id="search-btn">검색</button>
+    <button id="reset-btn">리셋</button>
+  </div>
+</div>
+<div class="post-container">
   <h1>POSTS</h1>
-    {% if user.is_authenticated %}
-      <a href="{% url 'blogPosts:new' %}">new post</a>
-    {% endif %}
-    {% for post in posts %} 
-      <div class="index-post-title">
-        <a href="{% url 'blogPosts:show' post.id %}">
-          <h3>{{ post.title }}</h3>
-        </a>
-        <a href="{% url 'blogPosts:like' id=post.id %}">
-          {{ post.like_users.count }} Likes
-        </a>
-      </div>
-    {% endfor %}
+  {% if user.is_authenticated %}
+  <a href="{% url 'blogPosts:new' %}">new post</a>
+  {% endif %}
+  {% for post in posts %}
+  <div class="index-post-title">
+    <a href="{% url 'blogPosts:show' post.id %}">
+      <h3 class="post-title">{{ post.title }}</h3>
+    </a>
+    <a href="{% url 'blogPosts:like' id=post.id %}">
+      {{ post.like_users.count }} Likes
+    </a>
+  </div>
+  {% endfor %}
+</div>
 {% endblock content %}
+{% block js %}
+<script type="module" src="{% static 'blogPosts/js/index.js' %}"></script>
+{% endblock js %}
