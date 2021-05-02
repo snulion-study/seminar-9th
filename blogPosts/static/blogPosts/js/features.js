@@ -33,7 +33,7 @@ const searchFeature = {
 	getAllPosts() {
 		const postElements = [...document.querySelectorAll('.index-post-title')];
 
-		const posts = postElements.map(post => {
+		const posts = postElements.map((post) => {
 			const [
 				{ textContent: titleTextNode },
 				{ textContent: likeCountTextNode },
@@ -98,9 +98,7 @@ const logOutFeature = {
 	html: document.querySelector('html'),
 	body: document.querySelector('body'),
 	logOutModal: document.getElementById('log-out-modal'),
-	modalContent: document.querySelector(
-		'#log-out-modal > .modal-content'
-	),
+	modalContent: document.querySelector('#log-out-modal > .modal-content'),
 
 	handleLogOutBtnClick(e) {
 		e.preventDefault();
@@ -130,7 +128,8 @@ const logOutFeature = {
 		this.lockScroll();
 
 		const viewedPosts = commonFeature.getViewedPosts();
-		const hasLogOutModalOpened = this.modalContent.children.length === viewedPosts.length;
+		const hasLogOutModalOpened =
+			this.modalContent.children.length === viewedPosts.length;
 
 		if (!hasLogOutModalOpened) {
 			this.setViewedPostCount(viewedPosts);
@@ -144,13 +143,13 @@ const logOutFeature = {
 	},
 
 	lockScroll() {
-		this.html.classList.add('hidden');
-		this.body.classList.add('hidden');
+		this.html.classList.add('hide');
+		this.body.classList.add('hide');
 	},
 
 	unlockScroll() {
-		this.html.classList.remove('hidden');
-		this.body.classList.remove('hidden');
+		this.html.classList.remove('hide');
+		this.body.classList.remove('hide');
 	},
 
 	setViewedPostCount(viewedPosts) {
