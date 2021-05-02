@@ -34,15 +34,11 @@ const searchFeature = {
 		const postElements = [...document.querySelectorAll('.index-post-title')];
 
 		const posts = postElements.map((post) => {
-			const [
-				{ textContent: titleTextNode },
-				{ textContent: likeCountTextNode },
-			] = [post.firstElementChild.firstElementChild, post.lastElementChild];
+			const title = post.firstElementChild.nextElementSibling.textContent.trim();
 
 			return {
 				post,
-				title: titleTextNode.trim(),
-				likeCount: +likeCountTextNode.trim().split(/\s/)[0],
+				title,
 			};
 		});
 
@@ -144,14 +140,14 @@ const logOutFeature = {
 	},
 
 	lockScroll() {
-    // UI-Framework 적용 이후 불필요
+		// UI-Framework 적용 이후 불필요
 		// this.html.classList.add('hide');
 		// this.body.classList.add('hide');
 		this.mdlLayoutContent.style.setProperty('overflow', 'hidden');
 	},
 
 	unlockScroll() {
-    // UI-Framework 적용 이후 불필요
+		// UI-Framework 적용 이후 불필요
 		// this.html.classList.remove('hide');
 		// this.body.classList.remove('hide');
 		this.mdlLayoutContent.style.setProperty('overflow', 'auto');
