@@ -33,7 +33,7 @@ const searchFeature = {
 	getAllPosts() {
 		const postElements = [...document.querySelectorAll('.index-post-title')];
 
-		const posts = postElements.map((post) => {
+		const posts = postElements.map(post => {
 			const [
 				{ textContent: titleTextNode },
 				{ textContent: likeCountTextNode },
