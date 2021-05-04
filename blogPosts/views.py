@@ -22,3 +22,15 @@ def delete(request, id):
     post = Post.objects.get(id=id)
     post.delete()
     return redirect('blogPosts:index')
+
+def update(request, id):
+    post = Post.objects.get(id=id)
+    if request.method == 'GET':
+        return render(request, 'blogPosts/update.html', {'post':post})
+    elif request.method == "POST":
+        post.title = request.POST['title']
+        post.content = request.POST['content']
+        post.save()
+        return redirect('blogPosts:index')
+
+    

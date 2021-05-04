@@ -4,6 +4,8 @@
 		<h1>POSTS</h1>
 		{% comment %} <a href="/posts/new/">new post</a> {% endcomment %}
     <a href="{% url 'blogPosts:new' %}">new posts</a>
+        {% comment %} <a href="/posts/update/">new post</a> {% endcomment %}
+    <a href="{% url 'blogPosts:new' %}">new posts</a>
     {% for post in posts %}
         <div style="border: 1px solid grey;">
             <a href="/posts/{{ post.id }}/">
