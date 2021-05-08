@@ -5,7 +5,7 @@
   <a href="{% url 'blogPosts:new' %}">new posts</a>
   {% for post in posts %}
     <div style="border: 1px solid grey;">
-      <a href="/posts/{{ post.id }}/">
+      <a href="{% url 'blogPosts:show' id=post.id %}">
         <h3>{{ post.title }}</h3>
       </a>
     </div>

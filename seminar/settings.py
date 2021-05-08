@@ -124,7 +124,3 @@ STATIC_URL = '/static/'
 
 SASS_PROCESSOR_ENABLED =  True
 SASS_PROCESSOR_ROOT =  os.path.join(BASE_DIR, 'blogPosts', 'static')
-
-
-# Model default settings
-DEFAULT_AUTO_FIELD='django.db.models.AutoField'
