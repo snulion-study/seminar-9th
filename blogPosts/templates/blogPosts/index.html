@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>POSTS</h1>
+  <a href="{% url 'blogPosts:new' %}">new posts</a>
+  {% for post in posts %}
+    <div style="border: 1px solid grey;">
+      <a href="{% url 'blogPosts:show' id=post.id %}">
+        <h3>{{ post.title }}</h3>
+      </a>
+    </div>
+  {% endfor %}
+{% endblock content %}
