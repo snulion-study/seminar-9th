@@ -1,6 +1,10 @@
 header {
-  width: 100%; 
-  background-color: mediumslateblue; 
-  color: white; 
-  text-align: left;
+	width: 100%;
+	background-color: mediumslateblue;
+	color: white;
+	text-align: left;
+}
+
+.mdl-layout__content {
+	padding: 16px;
 }
