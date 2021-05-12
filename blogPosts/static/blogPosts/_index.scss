@@ -1,3 +1,11 @@
+.post-main-title {
+	display: flex;
+
+	.new-post-button {
+		margin-left: 20px;
+	}
+}
+
 .post-container {
 	display: flex;
 	flex-wrap: wrap;
