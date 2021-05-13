@@ -1,4 +1,3 @@
-```
 # Created by https://www.toptal.com/developers/gitignore/api/django,vscode
 # Edit at https://www.toptal.com/developers/gitignore?templates=django,vscode
 
@@ -163,4 +162,3 @@ dmypy.json
 *.css.map
 
 # End of https://www.toptal.com/developers/gitignore/api/django,vscode
-```
