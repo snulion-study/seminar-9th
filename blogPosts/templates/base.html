@@ -4,12 +4,26 @@
     <meta charset="utf-8">
     <title>snulion</title>
     {% load static %}
-	{% load sass_tags %}
-	<link rel="stylesheet" type="text/css" href="{% sass_src 'blogPosts/scss/style.scss' %}">
+    {% load sass_tags %}
+    <link rel="stylesheet" type="text/css" href="{% sass_src 'blogPosts/scss/style.scss' %}">
   </head>
-  <header>Snulion Blog</header>
+  <header>
+    <div style="text-align: right;">
+      {% if user.is_authenticated %}
+        <div>{{ user.get_username }}님, 안녕하세요</div>
+        <div>학교: {{ user.profile.college }}</div>
+        <div>전공: {{ user.profile.major }}</div>
+        <a href="{% url 'logout'%}">로그아웃</a>
+        <a href="{% url 'myinfo'%}">내 정보 수정하기</a>
+      {% else %}
+        <a href="{% url 'signup' %}">회원가입</a>
+        <a href="{% url 'login'%}">로그인</a>
+      {% endif %}
+    </div>
+    Snulion Blog
+  </header>
   <body>
-  {% block content %}
-  {% endblock %}
+    {% block content %}
+    {% endblock %}
   </body>
 </html>

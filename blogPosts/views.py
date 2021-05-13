@@ -37,4 +37,3 @@ def update(request, id):
         content = request.POST['content']
         Post.objects.filter(id=id).update(title=title, content=content)
         return redirect('blogPosts:show', id=id)
-        
