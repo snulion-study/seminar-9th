@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Post
+from .models import Post, Comment
 from accounts.models import Profile
 from django.db.models import Count
 from django.contrib.auth.models import User
@@ -30,7 +30,7 @@ def index(request):
     elif request.method == 'POST': 
         title = request.POST['title']
         content = request.POST['content']
-        Post.objects.create(title=title, content=content)
+        Post.objects.create(title=title, content=content, author=request.user)
         return redirect('blogPosts:index') 
 
 
@@ -59,3 +59,15 @@ def update(request, id):
         content = request.POST['content']
         Post.objects.filter(id=id).update(title=title, content=content)
         return redirect('blogPosts:show', id=id)
+
+
+class CommentView:
+    def create(request, id):
+        content = request.POST['content']
+        Comment.objects.create(post_id=id, content=content, author=request.user)
+        return redirect(f'/posts/{id}')
+        
+    def delete(request, id, cid):
+        comment = Comment.objects.get(id=cid)
+        comment.delete()
+        return redirect(f'/posts/{id}')
