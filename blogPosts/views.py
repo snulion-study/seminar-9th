@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Post, Comment
+from .models import Post, Comment, Like
 from accounts.models import Profile
 from django.db.models import Count
 from django.contrib.auth.models import User
@@ -71,3 +71,13 @@ class CommentView:
         comment = Comment.objects.get(id=cid)
         comment.delete()
         return redirect(f'/posts/{id}')
+
+class LikeView:
+    def create(request, id):
+        post = Post.objects.get(id=id)
+        like_list = post.like_set.filter(user_id=request.user.id)
+        if like_list.count() > 0:
+            post.like_set.get(user=request.user).delete()
+        else:
+            Like.objects.create(user=request.user, post=post)
+        return redirect ('/posts')
