@@ -2,6 +2,29 @@
 
 {% block content %}
   <h1>POSTS</h1>
+  {% for college in colleges %}
+    <div>{{ forloop.counter }}. {{ college.college }}: {{ college.count }} 명</div>
+  {% endfor %}
+  <br/>
+  {% if user.is_authenticated %}
+    <div>
+      같은 학교 User: 
+      {% if users_with_same_college %}
+        {% for user in users_with_same_college %} {{user.get_username}} {% endfor %}
+      {% else %}
+        같은 학교 사람이 없습니다.
+      {% endif %}
+    </div>
+    <div>
+      같은 전공 User: 
+      {% if users_with_same_major %}
+        {% for user in users_with_same_major%} {{user.get_username}} {% endfor %}
+      {% else %}
+        같은 전공 사람이 없습니다.
+      {% endif %}
+    </div>
+  {% endif %}
+  <br/>
   <a href="{% url 'blogPosts:new' %}">new posts</a>
   {% for post in posts %}
     <div style="border: 1px solid grey;">
