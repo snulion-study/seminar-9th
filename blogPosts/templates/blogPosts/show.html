@@ -11,6 +11,12 @@
       <a href="{% url 'blogPosts:update' id=post.id %}">수정</a>
       <a href="{% url 'blogPosts:delete' id=post.id %}">삭제</a>
     {% endif %}
+    <div> 
+      태그:
+      {% for tag in tags %}
+        <a href="{% url 'tags:read' id=tag.id %}">{{ tag.content }}</a>
+      {% endfor %}
+    </div>
     <p><strong>댓글이 n개 있습니다 </strong><p>
 		<form action="{% url 'blogPosts:comment_create' id=post.id %}" method="POST">
       {% csrf_token %}

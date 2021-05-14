@@ -3,11 +3,13 @@ from .models import Post, Comment, Like
 from accounts.models import Profile
 from django.db.models import Count
 from django.contrib.auth.models import User
+from tags.models import Tag
 
 # Create your views here.
 def index(request):
     if request.method == 'GET': 
         posts = Post.objects.all()
+        tags = Tag.objects.all()
         colleges = Profile.objects.values('college').annotate(count=Count('college')).order_by('count')
         users_with_same_college = None
         users_with_same_major = None
@@ -23,24 +25,29 @@ def index(request):
                 'posts': posts, 
                 'colleges': colleges, 
                 'users_with_same_college': users_with_same_college, 
-                'users_with_same_major': users_with_same_major
+                'users_with_same_major': users_with_same_major,
+                'tags': tags
             }
         )
     
     elif request.method == 'POST': 
         title = request.POST['title']
         content = request.POST['content']
-        Post.objects.create(title=title, content=content, author=request.user)
+        post = Post.objects.create(title=title, content=content, author=request.user)
+        for tag_id in request.POST.getlist('tags'):
+            post.tags.add(tag_id)
         return redirect('blogPosts:index') 
 
 
 def new(request):
-    return render(request, 'blogPosts/new.html')
+    tags = Tag.objects.all()
+    return render(request, 'blogPosts/new.html', {'tags': tags})
 
 
 def show(request, id):
     post = Post.objects.get(id=id)
-    return render(request, 'blogPosts/show.html', {'post':post})
+    tags = Tag.objects.filter(posts=post)
+    return render(request, 'blogPosts/show.html', {'post':post, 'tags': tags})
 
 
 def delete(request, id):
@@ -52,12 +59,17 @@ def delete(request, id):
 def update(request, id):
     if request.method == 'GET':
         post = Post.objects.get(id=id)
-        return render(request, 'blogPosts/update.html', {'post':post})
+        tags = Tag.objects.all()
+        return render(request, 'blogPosts/update.html', {'post':post, 'tags': tags})
     
     elif request.method == 'POST':
         title = request.POST['title']
         content = request.POST['content']
-        Post.objects.filter(id=id).update(title=title, content=content)
+        post = Post.objects.filter(id=id)
+        post.update(title=title, content=content)
+        
+        post.first().tags.set(request.POST.getlist('tags'))
+            
         return redirect('blogPosts:show', id=id)
 
 

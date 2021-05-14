@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
+from tags.models import Tag
 
 class Post(models.Model):
     title = models.CharField(max_length=256)
@@ -9,7 +10,8 @@ class Post(models.Model):
     created_at = models.DateTimeField(default=timezone.now)
     updated_at = models.DateTimeField(blank=True, null=True)
     like_users = models.ManyToManyField(User, blank=True, related_name='like_posts', through='Like')
-
+    tags = models.ManyToManyField(Tag, blank=True, related_name='posts')
+    
     def update_date(self):
         self.update_at = timezone.now()
         self.save()
