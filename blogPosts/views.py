@@ -1,20 +1,42 @@
 from django.shortcuts import render, redirect
 from .models import Post, Comment, Like
+from accounts.models import Profile
+from django.db.models import Count
+from django.contrib.auth.models import User
 from tags.models import Tag
 
 # Create your views here.
 def index(request):
-    if request.method == 'GET':
+    if request.method == 'GET': 
         posts = Post.objects.all()
         tags = Tag.objects.all()
-        return render(request, 'blogPosts/index.html', {'posts': posts, 'tags': tags})
-    elif request.method == 'POST':
+        colleges = Profile.objects.values('college').annotate(count=Count('college')).order_by('count')
+        users_with_same_college = None
+        users_with_same_major = None
+        
+        if request.user.is_authenticated:
+            users_with_same_college = User.objects.filter(profile__college=request.user.profile.college).exclude(id=request.user.id)
+            users_with_same_major = User.objects.filter(profile__major=request.user.profile.major).exclude(id=request.user.id)
+            
+        return render(
+            request, 
+            'blogPosts/index.html', 
+            {
+                'posts': posts, 
+                'colleges': colleges, 
+                'users_with_same_college': users_with_same_college, 
+                'users_with_same_major': users_with_same_major,
+                'tags': tags
+            }
+        )
+    
+    elif request.method == 'POST': 
         title = request.POST['title']
         content = request.POST['content']
         post = Post.objects.create(title=title, content=content, author=request.user)
         for tag_id in request.POST.getlist('tags'):
             post.tags.add(tag_id)
-        return redirect('blogPosts:index')
+        return redirect('blogPosts:index') 
 
 
 def new(request):
@@ -25,13 +47,30 @@ def new(request):
 def show(request, id):
     post = Post.objects.get(id=id)
     tags = Tag.objects.filter(posts=post)
-    return render(request, 'blogPosts/show.html', {'post': post, 'tags': tags})
+    return render(request, 'blogPosts/show.html', {'post':post, 'tags': tags})
 
 
 def delete(request, id):
     post = Post.objects.get(id=id)
-    post.delete()
+    post.delete() 
     return redirect('blogPosts:index')
+
+
+def update(request, id):
+    if request.method == 'GET':
+        post = Post.objects.get(id=id)
+        tags = Tag.objects.all()
+        return render(request, 'blogPosts/update.html', {'post':post, 'tags': tags})
+    
+    elif request.method == 'POST':
+        title = request.POST['title']
+        content = request.POST['content']
+        post = Post.objects.filter(id=id)
+        post.update(title=title, content=content)
+        
+        post.first().tags.set(request.POST.getlist('tags'))
+            
+        return redirect('blogPosts:show', id=id)
 
 
 class CommentView:
@@ -44,8 +83,6 @@ class CommentView:
         comment = Comment.objects.get(id=cid)
         comment.delete()
         return redirect(f'/posts/{id}')
-    
-    
 class LikeView:
     def create(request, id):
         post = Post.objects.get(id=id)
