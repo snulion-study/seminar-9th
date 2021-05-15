@@ -25,10 +25,10 @@
         <!-- Navigation. We hide it in small screens. -->
         <nav class="mdl-navigation mdl-layout--large-screen-only">
           {% if user.is_authenticated %}
-          <div>{{ user.get_username }}님, 안녕하세요</div>
-          <div>학교: {{ user.profile.college }}</div>
-          <div>전공: {{ user.profile.major }}</div>
-          <div>
+          <div style="padding-right: 10px; border-right: 1px solid white;">{{ user.get_username }}님, 안녕하세요</div>
+          <div style="padding: 0 10px; border-right: 1px solid white;">학교: {{ user.profile.college }}</div>
+          <div style="padding: 0 10px; border-right: 1px solid white">전공: {{ user.profile.major }}</div>
+          <div style="padding-left: 10px">
             내가 좋아한 글 : {{ user.like_posts.count }}개
           </div>
           <a class="mdl-navigation__link" href="{% url 'logout' %}">로그아웃</a>

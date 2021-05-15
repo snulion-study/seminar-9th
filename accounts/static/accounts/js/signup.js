@@ -58,8 +58,8 @@ const handleSignupFail = () => {
 	disableInputTags();
 };
 
+const signupErrorModal = document.getElementById('signup-error-modal');
 const showSignupErrorModal = () => {
-	const signupErrorModal = document.getElementById('signup-error-modal');
 	signupErrorModal.classList.add('show');
 };
 
@@ -73,26 +73,25 @@ const handleModalCloseBtnClick = () => {
 };
 
 const hideSignupErrorModal = () => {
-	const signupErrorModal = document.getElementById('signup-error-modal');
 	signupErrorModal.classList.remove('show');
 };
 
+const bodyTag = document.querySelector('body');
+
 const setGrayBackGroundColor = () => {
-	const bodyTag = document.querySelector('body');
 	bodyTag.classList.add('gray');
 };
 
 const resetGrayBackGroundColor = () => {
-	const bodyTag = document.querySelector('body');
 	bodyTag.classList.remove('gray');
 };
 
+const inputTags = [...document.querySelectorAll('input')];
+
 const disableInputTags = () => {
-	const inputTags = [...document.querySelectorAll('input')];
 	inputTags.forEach((inputTag) => (inputTag.disabled = true));
 };
 
 const enableInputTags = () => {
-	const inputTags = [...document.querySelectorAll('input')];
 	inputTags.forEach((inputTags) => (inputTags.disabled = false));
 };
