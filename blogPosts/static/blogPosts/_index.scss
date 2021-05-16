@@ -1,3 +1,22 @@
+.tag-search-container {
+	display: flex;
+
+	.tag-container {
+		width: 50%;
+	}
+
+	.search-container {
+		display: flex;
+		align-items: flex-end;
+		width: 50%;
+
+		#search-bar,
+		#search-btn {
+			margin-right: 20px;
+		}
+	}
+}
+
 .post-main-title {
 	display: flex;
 
@@ -14,6 +33,10 @@
 		width: 320px;
 		margin-right: 15px;
 		margin-bottom: 15px;
+
+		&.hide {
+			display: none;
+		}
 
 		.post-header {
 			display: flex;

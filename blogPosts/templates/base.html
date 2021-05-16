@@ -11,6 +11,9 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.deep_purple-pink.min.css" />
   <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+  <script type="module" src="{% static 'blogPosts/js/base.js' %}"></script>
+  {% block js %}
+  {% endblock %}
 </head>
 
 <body>
@@ -60,6 +63,11 @@
         {% endblock %}
       </div>
     </main>
+    <footer>
+      <div class="copyright-container">
+        <img class="logo" src="{% static 'blogPosts/img/likelion_white_logo.png' %}">
+        <span id="copyright-text" class="copyright">SNU LIKELION © 2020</span>
+    </footer>
   </div>
 </body>
 

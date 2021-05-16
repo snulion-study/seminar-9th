@@ -1,18 +1,30 @@
 {% extends 'base.html' %}
 
+{% load static %}
+{% block js %}
+<script type="module" src="{% static 'blogPosts/js/index.js' %}"></script>
+{% endblock %}
+
 {% block content %}
-<div>
-  태그
-  {% for tag in tags %}
-  <a href="{% url 'tags:read' id=tag.id %}">{{ tag.content }}</a>
-  {% endfor %}
-  {% if user.is_authenticated %}
-  <form action="{% url 'tags:create' %}" method="POST">
-    {% csrf_token %}
-    <input type="text" name="content" />
-    <button type="submit">태그 추가</button>
-  </form>
-  {% endif %}
+<div class="tag-search-container">
+  <div class="tag-container">
+    태그
+    {% for tag in tags %}
+    <a href="{% url 'tags:read' id=tag.id %}">{{ tag.content }}</a>
+    {% endfor %}
+    {% if user.is_authenticated %}
+    <form action="{% url 'tags:create' %}" method="POST">
+      {% csrf_token %}
+      <input type="text" name="content" />
+      <button type="submit">태그 추가</button>
+    </form>
+    {% endif %}
+  </div>
+  <div class="search-container">
+    <input id="search-bar" type="text" placeholder="타이틀을 입력해주세요">
+    <button id="search-btn">검색</button>
+    <button id="reset-btn">리셋</button>
+  </div>
 </div>
 <h1 class="post-main-title">
   POSTS
