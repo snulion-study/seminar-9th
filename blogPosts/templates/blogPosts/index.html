@@ -3,7 +3,7 @@
 {% load static %}
 {% block js %}
 <script type="module" src="{% static 'blogPosts/js/index.js' %}"></script>
-{% endblock %}
+{% endblock js %}
 
 {% block content %}
 <div class="tag-search-container">
@@ -104,4 +104,4 @@
   </div>
   {% endfor %}
 </div>
-{% endblock %}
+{% endblock content %}

@@ -34,7 +34,7 @@
           <div style="padding-left: 10px">
             내가 좋아한 글 : {{ user.like_posts.count }}개
           </div>
-          <a class="mdl-navigation__link" href="{% url 'logout' %}">로그아웃</a>
+          <a id="logout" class="mdl-navigation__link" href="{% url 'logout' %}">로그아웃</a>
           <a class="mdl-navigation__link" href="{% url 'myinfo' %}">내 정보 수정하기</a>
           {% else %}
           <a class="mdl-navigation__link" href="{% url 'signup' %}">회원가입</a>
@@ -60,9 +60,24 @@
       <div class="page-content">
         <!-- Your content goes here -->
         {% block content %}
-        {% endblock %}
+        {% endblock content%}
       </div>
     </main>
+    <div id="log-out-modal">
+      <div class="modal-header">
+        오늘은 총&nbsp;<span class="viewed-post-count">0</span>개의 글을 읽으셨네요!
+      </div>
+      <ul class="modal-content">
+      </ul>
+      <div class="modal-footer">
+        <button class="confirm">
+          로그아웃
+        </button>
+        <button class="cancel">
+          취소
+        </button>
+      </div>
+    </div>
     <footer>
       <div class="copyright-container">
         <img class="logo" src="{% static 'blogPosts/img/likelion_white_logo.png' %}">
