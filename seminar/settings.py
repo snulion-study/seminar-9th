@@ -21,7 +21,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'y!)*@c1*h2k=j5)ax2_do6ocg%pmy*7r0z^wedsg6zgh@35#h5'
+SECRET_KEY = 'oh#-=(vkc8jf!bqs*ex4!f%!*#u5(g^(323r29*t%7%t*a+z&9'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -38,10 +38,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'sass_processor',
     'blogPosts.apps.BlogpostsConfig',
     'accounts.apps.AccountsConfig',
     'tags.apps.TagsConfig',
-    'sass_processor',
 ]
 
 MIDDLEWARE = [
@@ -123,7 +123,13 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT =  os.path.join(BASE_DIR, 'static')
+STATICFILES_DIRS = [
+  os.path.join(BASE_DIR, 'accounts', 'static'),
+  os.path.join(BASE_DIR, 'blogPosts', 'static'),
+]
 
 SASS_PROCESSOR_ENABLED =  True
 SASS_PROCESSOR_ROOT =  os.path.join(BASE_DIR, 'blogPosts', 'static')
 LOGIN_REDIRECT_URL = "/posts/"
+LOGOUT_REDIRECT_URL = "/posts"

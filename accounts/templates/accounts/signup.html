@@ -1,21 +1,58 @@
-<h1> Sign Up! </h1>
+<!DOCTYPE html>
+<html lang="en">
 
-<form method="POST" action="{%url 'signup'%}">
+<head>
+  <meta charset="UTF-8">
+  {% load static %}
+  {% load sass_tags %}
+  <link rel="stylesheet" type="text/css" href="{% sass_src 'accounts/scss/signup.scss' %}" />
+  <title>Document</title>
+</head>
+
+<body>
+  <h1> Sign Up! </h1>
+
+  <form id="signup-form" method="POST" action="{%url 'signup'%}">
     {% csrf_token %}
     사용자 이름:
     <br>
-    <input name="username" type="text" value="">
+    <input name="username" type="text" value="" placeholder="사용자 이름을 입력해주세요">
+    <br>
+    <br>
+    재학중인 학교:
+    <br>
+    <input name="college" type="text" value="">
+    <br>
+    <br>
+    전공:
+    <br>
+    <input name="major" type="text" value="">
     <br>
     <br>
     비밀번호:
     <br>
-    <input name="password1" type="password" value="">
+    <input name="password1" type="password" value="" placeholder="3자 이상의 알파벳 대소문자 or 숫자를 입력해주세요">
     <br>
     <br>
     비밀번호 확인:
     <br>
-    <input name="password2" type="password" value="">
+    <input name="password2" type="password" value="" placeholder="3자 이상의 알파벳 대소문자 or 숫자를 입력해주세요">
     <br>
     <br>
     <input type="submit" value="Sign Up!">
-</form>
+  </form>
+  <div id="modal-background">
+    <div id="signup-error-modal">
+      <div class="modal-header">
+        <div class="modal-title">입력 오류</div>
+        <button class="close-button">✖</button>
+      </div>
+      <div class="modal-content">
+        비밀번호를 확인해주세요
+      </div>
+    </div>
+  </div>
+  <script type="module" src="{% static 'accounts/js/signup.js' %}"></script>
+</body>
+
+</html>
